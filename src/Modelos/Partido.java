@@ -24,14 +24,14 @@ public class Partido {
     public void finalPartido(int golesEquipoA, int golesEquipoB) {
         if(golesEquipoA > golesEquipoB) {
             equipoA.sumarPuntos(3);
-            System.out.println("El equipo " + equipoA.getNombre() + " ha ganado el partido");
+            System.out.println("El equipo " + equipoA.getNombre() + " ha ganado el partido " +  golesEquipoA + " - " + golesEquipoB);
         } else if (golesEquipoA < golesEquipoB) {
             equipoB.sumarPuntos(3);
-            System.out.println("El equipo " + equipoB.getNombre() + " ha ganado el partido");
+            System.out.println("El equipo " + equipoB.getNombre() + " ha ganado el partido " +  golesEquipoB + " - " + golesEquipoA);
         } else {
             equipoA.sumarPuntos(1);
             equipoB.sumarPuntos(1);
-            System.out.println("El partido ha terminado en empate");
+            System.out.println("El partido ha terminado en empate " +  golesEquipoA + " - " + golesEquipoB);
         }
     }
 
