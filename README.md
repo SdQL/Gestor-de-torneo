@@ -27,7 +27,7 @@ Este sistema, desarrollado en Java, permite gestionar de forma automatizada un t
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/usuario/torneo-club-pipita.git
+   git clone https://github.com/SdQL/Gestor-de-torneo.git
    
 2. Abrir el proyecto con cualquier IDE compatible.
 3. Ejecutar el archivo Main.java.
