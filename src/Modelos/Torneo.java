@@ -2,7 +2,7 @@ package Modelos;
 import java.util.Scanner;
 
 public class Torneo {
-    private Equipo[] equipos = new Equipo[10];
+    private final Equipo[] equipos = new Equipo[10];
     private int contadorEquipos = 0;
 
     public void registrarEquipo(Equipo equipo){
@@ -23,7 +23,7 @@ public class Torneo {
 
                     System.out.print("Goles de " + equipos[j].getNombre() + ": ");
                     int golesVisitante = sc.nextInt();
-                    sc.nextLine(); // Limpiar buffer
+
 
                     Partido partido = new Partido(equipos[i], equipos[j]);
                     partido.jugarPartido(golesLocal, golesVisitante);
@@ -37,9 +37,12 @@ public class Torneo {
 
 
     public void imprimirTabla(){
-        System.out.println("Tabla de posiciones:");
+        System.out.println("\nTabla de posiciones:");
         for (int i = 0; i < equipos.length; i++){
+
             System.out.println((i + 1) + ". " + equipos[i].getNombre() + " - " + equipos[i].getPuntos() + " puntos");
         }
     }
+
+
 }
