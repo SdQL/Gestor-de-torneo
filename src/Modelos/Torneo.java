@@ -39,9 +39,14 @@ public class Torneo {
     public void imprimirTabla(){
         System.out.println("\nTabla de posiciones:");
         for (int i = 0; i < equipos.length; i++){
-
+            // Pendiente: Ordenar la tabla por puntos
+            // ordenarTabla();
             System.out.println((i + 1) + ". " + equipos[i].getNombre() + " - " + equipos[i].getPuntos() + " puntos");
         }
+    }
+
+    private void ordenarTabla() {
+        return;
     }
 
 
