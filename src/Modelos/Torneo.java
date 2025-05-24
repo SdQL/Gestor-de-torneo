@@ -38,10 +38,13 @@ public class Torneo {
 
     public void imprimirTabla(){
         System.out.println("\nTabla de posiciones:");
-        for (int i = 0; i < equipos.length; i++){
-            // Pendiente: Ordenar la tabla por puntos
+        for (Equipo e : equipos) {
+
             // ordenarTabla();
-            System.out.println((i + 1) + ". " + equipos[i].getNombre() + " - " + equipos[i].getPuntos() + " puntos");
+            System.out.println(e.getNombre() + " - Pts: " + e.getPuntos() +
+                    " | GF: " + e.getGolesFavor() +
+                    " | GC: " + e.getGolesContra() +
+                    " | DG: " + (e.getGolesFavor() - e.getGolesContra()));
         }
     }
 
