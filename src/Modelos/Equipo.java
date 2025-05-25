@@ -7,6 +7,7 @@ public class Equipo {
     private int golesContra = 0;
     private int puntos = 0;
 
+
     public Equipo(String nombre, String pais) {
         this.nombre = nombre;
         this.pais = pais;
@@ -27,6 +28,9 @@ public class Equipo {
     public int getPuntos() {
         return puntos;
     }
+    public int getDiferenciaGoles() {
+        return golesFavor - golesContra;
+    }
 
     public void agregarGoles(int golesFavor, int golesContra) {
         this.golesFavor += golesFavor;
@@ -36,6 +40,5 @@ public class Equipo {
     public void sumarPuntos(int puntos) {
         this.puntos += puntos;
     }
-
 
 }

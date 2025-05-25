@@ -43,7 +43,7 @@ public class Torneo {
             System.out.println(e.getNombre() + " - Pts: " + e.getPuntos() +
                     " | GF: " + e.getGolesFavor() +
                     " | GC: " + e.getGolesContra() +
-                    " | DG: " + (e.getGolesFavor() - e.getGolesContra()));
+                    " | DG: " + (e.getDiferenciaGoles()));
         }
     }
 
