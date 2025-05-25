@@ -6,6 +6,15 @@ public class Equipo {
     private int golesFavor = 0;
     private int golesContra = 0;
     private int puntos = 0;
+    private boolean anotoPrimerGol = false;
+
+    public boolean anotoPrimerGol() {
+        return anotoPrimerGol;
+    }
+
+    public void marcaPrimerGol() {
+        anotoPrimerGol = true;
+    }
 
 
     public Equipo(String nombre, String pais) {
