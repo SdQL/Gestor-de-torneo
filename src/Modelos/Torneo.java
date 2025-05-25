@@ -39,7 +39,7 @@ public class Torneo {
         System.out.println("\nTabla de posiciones:");
         for (Equipo e : equipos) {
 
-            // ordenarTabla();
+            ordenarTabla();
             System.out.println(e.getNombre() + " - Pts: " + e.getPuntos() +
                     " | GF: " + e.getGolesFavor() +
                     " | GC: " + e.getGolesContra() +
@@ -48,8 +48,31 @@ public class Torneo {
     }
 
     private void ordenarTabla() {
-        return;
+        for (int i = 0; i < equipos.length - 1; i++) {
+            for (int j = 0; j < equipos.length - i - 1; j++) {
+                Equipo e1 = equipos[j];
+                Equipo e2 = equipos[j + 1];
+
+                boolean debeIntercambiar = false;
+
+                // Primero por puntos (mayor a menor)
+                if (e1.getPuntos() < e2.getPuntos()) {
+                    debeIntercambiar = true;
+                }
+                // Si tienen mismos puntos, por diferencia de goles (mayor a menor)
+                else if (e1.getPuntos() == e2.getPuntos() && e1.getDiferenciaGoles() < e2.getDiferenciaGoles()) {
+                    debeIntercambiar = true;
+                }
+
+                if (debeIntercambiar) {
+                    // Intercambiar equipos[j] y equipos[j + 1]
+                    equipos[j] = e2;
+                    equipos[j + 1] = e1;
+                }
+            }
+        }
     }
+
 
 
 }
