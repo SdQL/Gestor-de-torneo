@@ -12,7 +12,7 @@ public class Equipo {
         return anotoPrimerGol;
     }
 
-    public void marcaPrimerGol() {
+    public void marcarPrimerGol() {
         anotoPrimerGol = true;
     }
 

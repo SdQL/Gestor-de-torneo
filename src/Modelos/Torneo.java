@@ -4,6 +4,7 @@ package Modelos;
 public class Torneo {
     private final Equipo[] equipos = new Equipo[10];
     private int contadorEquipos = 0;
+    private boolean primerGolRegistrado = false;
 
     public void registrarEquipo(Equipo equipo){
         equipos[contadorEquipos] = equipo;
@@ -23,6 +24,16 @@ public class Torneo {
 
                     int golesVisitante = (int)(Math.random() * 6); // Valor entre 0 y 5
                     System.out.printf("Goles de %s: %d\n", equipos[j].getNombre(), golesVisitante);
+
+                    if (!primerGolRegistrado) {
+                        if (golesLocal > 0) {
+                            equipos[i].marcarPrimerGol();
+                            primerGolRegistrado = true;
+                        } else if (golesVisitante > 0) {
+                            equipos[j].marcarPrimerGol();
+                            primerGolRegistrado = true;
+                        }
+                    }
 
                     Partido partido = new Partido(equipos[i], equipos[j]);
                     partido.jugarPartido(golesLocal, golesVisitante);
@@ -55,13 +66,28 @@ public class Torneo {
 
                 boolean debeIntercambiar = false;
 
-                // Primero por puntos (mayor a menor)
+                // 1. Puntos
                 if (e1.getPuntos() < e2.getPuntos()) {
                     debeIntercambiar = true;
                 }
-                // Si tienen mismos puntos, por diferencia de goles (mayor a menor)
-                else if (e1.getPuntos() == e2.getPuntos() && e1.getDiferenciaGoles() < e2.getDiferenciaGoles()) {
-                    debeIntercambiar = true;
+
+                else if (e1.getPuntos() == e2.getPuntos()) {
+                    // 2. Diferencia de goles
+                    if (e1.getDiferenciaGoles() < e2.getDiferenciaGoles()) {
+                        debeIntercambiar = true;
+
+                    } else if (e1.getDiferenciaGoles() == e2.getDiferenciaGoles()) {
+                        // 3. Goles a favor
+                        if (e1.getGolesFavor() < e2.getGolesFavor()) {
+                            debeIntercambiar = true;
+
+                        } else if (e1.getGolesFavor() == e2.getGolesFavor()) {
+                            // 4. Anotó primer gol del campeonato
+                            if (!e1.anotoPrimerGol() && e2.anotoPrimerGol()) {
+                                debeIntercambiar = true;
+                            }
+                        }
+                    }
                 }
 
                 if (debeIntercambiar) {
