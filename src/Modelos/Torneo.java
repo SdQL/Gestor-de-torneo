@@ -2,7 +2,7 @@ package Modelos;
 
 
 public class Torneo {
-    private final Equipo[] equipos = new Equipo[10];
+    private Equipo[] equipos = new Equipo[10];
     private int contadorEquipos = 0;
     private boolean primerGolRegistrado = false;
 
@@ -47,10 +47,14 @@ public class Torneo {
 
 
     public void imprimirTabla(){
-        System.out.println("\nTabla de posiciones:");
-        for (Equipo e : equipos) {
+        Equipo[] copia = new Equipo[10];
+        System.arraycopy(equipos, 0, copia, 0, contadorEquipos);
 
-            ordenarTabla();
+        System.out.println("\nTabla de posiciones:");
+        ordenarTabla(copia);
+        for (Equipo e : copia) {
+
+
             System.out.println(e.getNombre() + " - Pts: " + e.getPuntos() +
                     " | GF: " + e.getGolesFavor() +
                     " | GC: " + e.getGolesContra() +
@@ -58,11 +62,11 @@ public class Torneo {
         }
     }
 
-    private void ordenarTabla() {
+    private void ordenarTabla(Equipo[] tabla) {
         for (int i = 0; i < equipos.length - 1; i++) {
             for (int j = 0; j < equipos.length - i - 1; j++) {
-                Equipo e1 = equipos[j];
-                Equipo e2 = equipos[j + 1];
+                Equipo e1 = tabla[j];
+                Equipo e2 = tabla[j + 1];
 
                 boolean debeIntercambiar = false;
 
@@ -92,11 +96,13 @@ public class Torneo {
 
                 if (debeIntercambiar) {
                     // Intercambiar equipos[j] y equipos[j + 1]
-                    equipos[j] = e2;
-                    equipos[j + 1] = e1;
+                    tabla[j] = e2;
+                    tabla[j + 1] = e1;
                 }
             }
         }
+
+        equipos = tabla; // Actualizar la referencia de equipos con la tabla ordenada
     }
 
 
