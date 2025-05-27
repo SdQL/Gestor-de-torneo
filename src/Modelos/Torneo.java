@@ -105,6 +105,14 @@ public class Torneo {
         equipos = tabla; // Actualizar la referencia de equipos con la tabla ordenada
     }
 
+    public Equipo[] equiposClasificados() {
+        Equipo[] clasificados = new Equipo[8];
 
+        for (int i = 0; i < 8; i++) {
+            clasificados[i] = equipos[i];
+        }
+
+        return clasificados;
+    }
 
 }
