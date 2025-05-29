@@ -14,6 +14,9 @@ public class Main {
         torneo.jugarTodosContraTodosIdaVuelta(equiposRegistrados);
 
         Equipo []clasificados = torneo.equiposClasificados(equiposRegistrados, 8);
+        EstadisticasEquipo[] estadisticasFase1 = torneo.guardarYReiniciar(equiposRegistrados);
+
+
         Octavos octavos = new Octavos(clasificados);
         octavos.mostrarGrupos();
         Equipo[] grupoA = octavos.getGrupoA();
@@ -23,15 +26,8 @@ public class Main {
         System.out.println("\nJugando octavos de final: (Grupo B)");
         torneo.jugarTodosContraTodosIdaVuelta(grupoB);
 
-        Equipo[] finalistaGrupoA = torneo.equiposClasificados(grupoA, 1);
-        Equipo[] finalistaGrupoB = torneo.equiposClasificados(grupoB, 1);
-
-        System.out.println("\nFinalistas de cada grupo:");
-        System.out.println("Grupo A: " + finalistaGrupoA[0].getNombre());
-        System.out.println("Grupo B: " + finalistaGrupoB[0].getNombre());
-
-
-
+        Equipo finalistaGrupoA = torneo.primerClasificado(grupoA);
+        Equipo finalistaGrupoB = torneo.primerClasificado(grupoB);
 
     }
 

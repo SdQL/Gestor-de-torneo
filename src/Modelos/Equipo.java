@@ -22,6 +22,13 @@ public class Equipo {
         this.pais = pais;
     }
 
+    public void reiniciarEstadisticas() {
+        this.golesFavor = 0;
+        this.golesContra = 0;
+        this.puntos = 0;
+        this.anotoPrimerGol = false;
+    }
+
     public String getNombre() {
         return nombre;
     }

@@ -47,13 +47,26 @@ public class Torneo {
                     Partido partido = new Partido(local, visitante);
                     partido.jugarPartido(golesLocal, golesVisitante);
 
-                    imprimirTabla(equiposAJugar);
                 }
             }
         }
+        imprimirTabla(equiposAJugar);
     }
 
+    public EstadisticasEquipo[] guardarYReiniciar(Equipo[] equipos) {
+        EstadisticasEquipo[] resumen = new EstadisticasEquipo[equipos.length];
 
+        for (int i = 0; i < resumen.length; i++) {
+            resumen[i] = new EstadisticasEquipo(equipos[i]);
+            equipos[i].reiniciarEstadisticas();
+        }
+
+        return resumen;
+    }
+
+    public Equipo primerClasificado(Equipo[] equipos) {
+        return equipos[0];
+    }
 
     public void imprimirTabla(Equipo[] tabla){
 
@@ -115,7 +128,7 @@ public class Torneo {
     public Equipo[] equiposClasificados(Equipo[] grupo, int cantidadClasificados) {
         Equipo[] clasificados = new Equipo[cantidadClasificados];
 
-        for (int i = 0; i < cantidadClasificados; i++) {
+        for(int i = 0; i < cantidadClasificados; i++) {
             clasificados[i] = grupo[i];
         }
 
