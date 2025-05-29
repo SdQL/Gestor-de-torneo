@@ -1,9 +1,6 @@
 package Modelos;
 
-
 public class Torneo {
-
-
     private Equipo[] equipos = new Equipo[10];
     private int contadorEquipos = 0;
     private boolean primerGolRegistrado = false;
@@ -12,27 +9,32 @@ public class Torneo {
         return equipos;
     }
 
-    public void registrarEquipo(Equipo equipo){
+    public void registrarEquipo(Equipo equipo) {
         equipos[contadorEquipos] = equipo;
         contadorEquipos++;
     }
 
     public void jugarTodosContraTodosIdaVuelta(Equipo[] equiposAJugar) {
-        System.out.println("\n--- Fase: Todos contra todos (ida y vuelta) ---");
+        System.out.println("\n==============================================");
+        System.out.println("      FASE: TODOS CONTRA TODOS (IDA Y VUELTA)");
+        System.out.println("==============================================");
 
-        for (int i = 0; i < equiposAJugar.length ; i++) {
+        for (int i = 0; i < equiposAJugar.length; i++) {
             for (int j = 0; j < equiposAJugar.length; j++) {
                 if (i != j) {
                     Equipo local = equiposAJugar[i];
                     Equipo visitante = equiposAJugar[j];
 
-                    System.out.println("Partido: " + local.getNombre() + " (Local) vs " + visitante.getNombre());
+                    System.out.println("\n--------------------------------");
+                    System.out.println("PARTIDO: " + local.getNombre() + " vs " + visitante.getNombre());
+                    System.out.println("--------------------------------");
 
-                    int golesLocal = (int)(Math.random() * 6); // Valor entre 0 y 5
-                    int golesVisitante = (int)(Math.random() * 6); // Valor entre 0 y 5
+                    int golesLocal = (int)(Math.random() * 6);
+                    int golesVisitante = (int)(Math.random() * 6);
 
-                    System.out.printf("Goles de %s: %d\n", local.getNombre(), golesLocal);
-                    System.out.printf("Goles de %s: %d\n", visitante.getNombre(), golesVisitante);
+                    System.out.println("  " + local.getNombre() + ": " + golesLocal);
+                    System.out.println("  " + visitante.getNombre() + ": " + golesVisitante);
+                    System.out.println("  Resultado: " + golesLocal + " - " + golesVisitante);
 
                     if (!primerGolRegistrado) {
                         if (golesLocal > 0) {
@@ -46,7 +48,6 @@ public class Torneo {
 
                     Partido partido = new Partido(local, visitante);
                     partido.jugarPartido(golesLocal, golesVisitante);
-
                 }
             }
         }
@@ -68,19 +69,24 @@ public class Torneo {
         return equipos[0];
     }
 
-    public void imprimirTabla(Equipo[] tabla){
+    public void imprimirTabla(Equipo[] tabla) {
+        System.out.println("\n=================================");
+        System.out.println("       TABLA DE POSICIONES");
+        System.out.println("=================================");
 
-        System.out.println("\nTabla de posiciones:");
         ordenarTabla(tabla);
+        System.out.println("EQUIPO               PTS  GF  GC  DG");
+        System.out.println("---------------------------------");
+
         for (Equipo e : tabla) {
-
-
-            System.out.println(e.getNombre() + " - Pts: " + e.getPuntos() +
-                    " | GF: " + e.getGolesFavor() +
-                    " | GC: " + e.getGolesContra() +
-                    " | DG: " + (e.getDiferenciaGoles()));
+            System.out.printf("%-20s %3d %3d %3d %3d\n",
+                    e.getNombre(),
+                    e.getPuntos(),
+                    e.getGolesFavor(),
+                    e.getGolesContra(),
+                    e.getDiferenciaGoles());
         }
-        System.out.println();
+        System.out.println("=================================\n");
     }
 
     private void ordenarTabla(Equipo[] tabla) {
@@ -134,5 +140,4 @@ public class Torneo {
 
         return clasificados;
     }
-
 }
