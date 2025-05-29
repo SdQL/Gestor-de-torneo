@@ -112,11 +112,11 @@ public class Torneo {
 
     }
 
-    public Equipo[] equiposClasificados() {
-        Equipo[] clasificados = new Equipo[8];
+    public Equipo[] equiposClasificados(Equipo[] grupo, int cantidadClasificados) {
+        Equipo[] clasificados = new Equipo[cantidadClasificados];
 
-        for (int i = 0; i < 8; i++) {
-            clasificados[i] = equipos[i];
+        for (int i = 0; i < cantidadClasificados; i++) {
+            clasificados[i] = grupo[i];
         }
 
         return clasificados;
