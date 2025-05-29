@@ -2,43 +2,52 @@ package Modelos;
 
 
 public class Torneo {
+
+
     private Equipo[] equipos = new Equipo[10];
     private int contadorEquipos = 0;
     private boolean primerGolRegistrado = false;
+
+    public Equipo[] getEquipos() {
+        return equipos;
+    }
 
     public void registrarEquipo(Equipo equipo){
         equipos[contadorEquipos] = equipo;
         contadorEquipos++;
     }
 
-    public void jugarTodosContraTodosIdaVuelta() {
+    public void jugarTodosContraTodosIdaVuelta(Equipo[] equiposAJugar) {
         System.out.println("\n--- Fase: Todos contra todos (ida y vuelta) ---");
 
-        for (int i = 0; i < equipos.length ; i++) {
-            for (int j = 0; j < equipos.length; j++) {
+        for (int i = 0; i < equiposAJugar.length ; i++) {
+            for (int j = 0; j < equiposAJugar.length; j++) {
                 if (i != j) {
-                    System.out.println("Partido: " + equipos[i].getNombre() + " (Local) vs " + equipos[j].getNombre());
+                    Equipo local = equiposAJugar[i];
+                    Equipo visitante = equiposAJugar[j];
+
+                    System.out.println("Partido: " + local.getNombre() + " (Local) vs " + visitante.getNombre());
 
                     int golesLocal = (int)(Math.random() * 6); // Valor entre 0 y 5
-                    System.out.printf("Goles de %s: %d\n", equipos[i].getNombre(), golesLocal);
-
                     int golesVisitante = (int)(Math.random() * 6); // Valor entre 0 y 5
-                    System.out.printf("Goles de %s: %d\n", equipos[j].getNombre(), golesVisitante);
+
+                    System.out.printf("Goles de %s: %d\n", local.getNombre(), golesLocal);
+                    System.out.printf("Goles de %s: %d\n", visitante.getNombre(), golesVisitante);
 
                     if (!primerGolRegistrado) {
                         if (golesLocal > 0) {
-                            equipos[i].marcarPrimerGol();
+                            local.marcarPrimerGol();
                             primerGolRegistrado = true;
                         } else if (golesVisitante > 0) {
-                            equipos[j].marcarPrimerGol();
+                            visitante.marcarPrimerGol();
                             primerGolRegistrado = true;
                         }
                     }
 
-                    Partido partido = new Partido(equipos[i], equipos[j]);
+                    Partido partido = new Partido(local, visitante);
                     partido.jugarPartido(golesLocal, golesVisitante);
-                    imprimirTabla();
 
+                    imprimirTabla(equiposAJugar);
                 }
             }
         }
@@ -46,13 +55,11 @@ public class Torneo {
 
 
 
-    public void imprimirTabla(){
-        Equipo[] copia = new Equipo[10];
-        System.arraycopy(equipos, 0, copia, 0, contadorEquipos);
+    public void imprimirTabla(Equipo[] tabla){
 
         System.out.println("\nTabla de posiciones:");
-        ordenarTabla(copia);
-        for (Equipo e : copia) {
+        ordenarTabla(tabla);
+        for (Equipo e : tabla) {
 
 
             System.out.println(e.getNombre() + " - Pts: " + e.getPuntos() +
@@ -64,8 +71,8 @@ public class Torneo {
     }
 
     private void ordenarTabla(Equipo[] tabla) {
-        for (int i = 0; i < equipos.length - 1; i++) {
-            for (int j = 0; j < equipos.length - i - 1; j++) {
+        for (int i = 0; i < tabla.length - 1; i++) {
+            for (int j = 0; j < tabla.length - i - 1; j++) {
                 Equipo e1 = tabla[j];
                 Equipo e2 = tabla[j + 1];
 
@@ -103,7 +110,6 @@ public class Torneo {
             }
         }
 
-        equipos = tabla; // Actualizar la referencia de equipos con la tabla ordenada
     }
 
     public Equipo[] equiposClasificados() {

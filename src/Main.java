@@ -7,8 +7,10 @@ public class Main {
         Torneo torneo = new Torneo();
 
         registrarEquipos(torneo, sc);
-        torneo.imprimirTabla();
-        torneo.jugarTodosContraTodosIdaVuelta();
+        Equipo [] equiposRegistrados = torneo.getEquipos();
+        torneo.imprimirTabla(equiposRegistrados);
+
+        torneo.jugarTodosContraTodosIdaVuelta(equiposRegistrados);
 
         Equipo []clasificados = torneo.equiposClasificados();
         Octavos octavos = new Octavos(clasificados);
