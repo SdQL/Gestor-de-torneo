@@ -13,6 +13,14 @@ public class Octavos {
         armarGrupos();
     }
 
+    public Equipo[] getGrupoA() {
+        return grupoA;
+    }
+
+    public Equipo[] getGrupoB() {
+        return grupoB;
+    }
+
     public void mostrarGrupos() {
         System.out.println("Grupo A:");
         for (Equipo e : grupoA) {

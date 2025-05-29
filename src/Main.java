@@ -1,5 +1,6 @@
 import Modelos.*;
 
+
 import  java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -12,9 +13,24 @@ public class Main {
 
         torneo.jugarTodosContraTodosIdaVuelta(equiposRegistrados);
 
-        Equipo []clasificados = torneo.equiposClasificados();
+        Equipo []clasificados = torneo.equiposClasificados(equiposRegistrados, 8);
         Octavos octavos = new Octavos(clasificados);
         octavos.mostrarGrupos();
+        Equipo[] grupoA = octavos.getGrupoA();
+        Equipo[] grupoB = octavos.getGrupoB();
+        System.out.println("\nJugando octavos de final: (Grupo A)");
+        torneo.jugarTodosContraTodosIdaVuelta(grupoA);
+        System.out.println("\nJugando octavos de final: (Grupo B)");
+        torneo.jugarTodosContraTodosIdaVuelta(grupoB);
+
+        Equipo[] finalistaGrupoA = torneo.equiposClasificados(grupoA, 1);
+        Equipo[] finalistaGrupoB = torneo.equiposClasificados(grupoB, 1);
+
+        System.out.println("\nFinalistas de cada grupo:");
+        System.out.println("Grupo A: " + finalistaGrupoA[0].getNombre());
+        System.out.println("Grupo B: " + finalistaGrupoB[0].getNombre());
+
+
 
 
     }
