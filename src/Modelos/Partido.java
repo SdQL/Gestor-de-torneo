@@ -11,6 +11,7 @@ public class Partido {
         this.equipoB = equipoB;
     }
 
+
     public void jugarPartido(int golesEquipoA, int golesEquipoB){
         this.golesEquipoA = golesEquipoA;
         this.golesEquipoB = golesEquipoB;
@@ -18,10 +19,10 @@ public class Partido {
         equipoA.agregarGoles(golesEquipoA, golesEquipoB);
         equipoB.agregarGoles(golesEquipoB, golesEquipoA);
 
-        finalPartido(this.golesEquipoA, this.golesEquipoB);
+        resultadoPartido(this.golesEquipoA, this.golesEquipoB);
     }
 
-    public void finalPartido(int golesEquipoA, int golesEquipoB) {
+    public void resultadoPartido(int golesEquipoA, int golesEquipoB) {
         if(golesEquipoA > golesEquipoB) {
             equipoA.sumarPuntos(3);
             System.out.println("El equipo " + equipoA.getNombre() + " ha ganado el partido " +  golesEquipoA + " - " + golesEquipoB);
