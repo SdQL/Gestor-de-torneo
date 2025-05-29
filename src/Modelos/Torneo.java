@@ -60,6 +60,7 @@ public class Torneo {
                     " | GC: " + e.getGolesContra() +
                     " | DG: " + (e.getDiferenciaGoles()));
         }
+        System.out.println();
     }
 
     private void ordenarTabla(Equipo[] tabla) {
